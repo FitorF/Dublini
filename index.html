@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <title>Dublini Food & More – Menu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Logo -->
+  <div class="header">
+    <img src="unnamed.jpg" alt="Dublini Logo">
+  </div>
+
+  <!-- Navigimi -->
+  <div class="nav-buttons">
+    <button onclick="showSection('kafe')">☕ Kafe</button>
+    <button onclick="showSection('pije')">🥤 Pije</button>
+    <button onclick="showSection('ushqime')">🍕 Ushqime</button>
+  </div>
+
+  <!-- Seksioni i kafes -->
+  <div id="kafe" class="menu-section hidden">
+    <h2>Kafe</h2>
+    <ul class="subitems">
+      <li><span>Espresso</span><span class="price">€0.80</span></li>
+      <li><span>Makiato</span><span class="price">€0.80</span></li>
+      <li><span>Euro Paplum</span><span class="price">€0.80</span></li>
+      <li><span>Latte Makiato</span><span class="price">€1.00</span></li>
+      <li><span>Bambi</span><span class="price">€1.00</span></li>
+    </ul>
+  </div>
+
+  <!-- Seksioni i pijeve -->
+  <div id="pije" class="menu-section hidden">
+    <h2>Pije</h2>
+    <ul class="subitems">
+      <li><span>Coca Cola</span><span class="price">€1.00</span></li>
+      <li><span>Fanta</span><span class="price">€1.00</span></li>
+      <li><span>Cola Grop</span><span class="price">€1.00</span></li>
+      <li><span>Ice Tea</span><span class="price">€1.00</span></li>
+      <li><span>Laqin</span><span class="price">€1.00</span></li>
+      <li><span>Pjeshkë</span><span class="price">€1.00</span></li>
+      <li><span>Dredhëz</span><span class="price">€1.00</span></li>
+    </ul>
+  </div>
+
+  <!-- Seksioni i ushqimeve -->
+  <div id="ushqime" class="menu-section hidden">
+
+    <!-- Pizza -->
+    <div class="item">
+      <img src="Pizza.jpg" alt="Pizza">
+      <div class="item-title">Pizza</div>
+      <ul class="subitems">
+        <li><span>Pizza e Vogël</span><span class="price">€3.00</span></li>
+        <li><span>Pizza e Mesme</span><span class="price">€3.50</span></li>
+        <li><span>Pizza e Madhe</span><span class="price">€4.00</span></li>
+      </ul>
+    </div>
+
+    <!-- Hamburger -->
+    <div class="item">
+      <img src="burger.webp" alt="Hamburger">
+      <div class="item-title">Hamburger</div>
+      <ul class="subitems">
+        <li><span>Hamburger Classic</span><span class="price">€2.00</span></li>
+        <li><span>Hamburger Dublini (Ofertë)</span><span class="price">€4.00</span></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    © 2025 – DUBLINI FOOD & MORE. Ju mirëpresim çdo ditë!
+  </div>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.menu-section').forEach(section => {
+        section.classList.add('hidden');
+      });
+      document.getElementById(id).classList.remove('hidden');
+    }
+  </script>
+
+</body>
+</html>
