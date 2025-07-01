@@ -1,15 +1,99 @@
 <!DOCTYPE html>
 <html lang="sq">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Dublini Food & More – Menu</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Stilim bazik */
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header img {
+      max-width: 150px;
+      display: block;
+      margin: 0 auto 20px auto;
+    }
+    .nav-buttons {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .nav-buttons button {
+      margin: 0 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      background-color: #0066cc;
+      color: white;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    .nav-buttons button:hover {
+      background-color: #004999;
+    }
+    .menu-section {
+      display: none;
+    }
+    .menu-section.active {
+      display: block;
+    }
+    ul.subitems {
+      list-style: none;
+      padding: 0;
+    }
+    ul.subitems li {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .item {
+      margin-bottom: 20px;
+    }
+    .item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .item-title {
+      font-weight: bold;
+      font-size: 18px;
+      margin: 10px 0 5px 0;
+    }
+    .price {
+      font-weight: bold;
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+    }
+    /* Klasa për fshehje */
+    .hidden {
+      display: none;
+    }
+
+    /* QR Code style */
+    #qrcode {
+      margin: 40px auto 20px auto;
+      width: 220px;
+      height: 220px;
+    }
+  </style>
+
+  <!-- Biblioteka për QR Code -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
   <!-- Logo -->
   <div class="header">
-    <img src="unnamed.jpg" alt="Dublini Logo">
+    <img src="unnamed.jpg" alt="Dublini Logo" />
   </div>
 
   <!-- Navigimi -->
@@ -20,7 +104,7 @@
   </div>
 
   <!-- Seksioni i kafes -->
-  <div id="kafe" class="menu-section hidden">
+  <div id="kafe" class="menu-section">
     <h2>Kafe</h2>
     <ul class="subitems">
       <li><span>Espresso</span><span class="price">€0.80</span></li>
@@ -47,10 +131,9 @@
 
   <!-- Seksioni i ushqimeve -->
   <div id="ushqime" class="menu-section hidden">
-
     <!-- Pizza -->
     <div class="item">
-      <img src="Pizza.jpg" alt="Pizza">
+      <img src="Pizza.jpg" alt="Pizza" />
       <div class="item-title">Pizza</div>
       <ul class="subitems">
         <li><span>Pizza e Vogël</span><span class="price">€3.00</span></li>
@@ -61,15 +144,17 @@
 
     <!-- Hamburger -->
     <div class="item">
-      <img src="burger.webp" alt="Hamburger">
+      <img src="burger.webp" alt="Hamburger" />
       <div class="item-title">Hamburger</div>
       <ul class="subitems">
         <li><span>Hamburger Classic</span><span class="price">€2.00</span></li>
         <li><span>Hamburger Dublini (Ofertë)</span><span class="price">€4.00</span></li>
       </ul>
     </div>
-
   </div>
+
+  <!-- QR Code për URL-në e faqes -->
+  <div id="qrcode"></div>
 
   <div class="footer">
     © 2025 – DUBLINI FOOD & MORE. Ju mirëpresim çdo ditë!
@@ -77,12 +162,30 @@
 
   <script>
     function showSection(id) {
+      // Fshi të gjitha seksionet
       document.querySelectorAll('.menu-section').forEach(section => {
         section.classList.add('hidden');
+        section.classList.remove('active');
       });
-      document.getElementById(id).classList.remove('hidden');
+      // Shfaq vetëm seksionin e kërkuar
+      const selected = document.getElementById(id);
+      if (selected) {
+        selected.classList.remove('hidden');
+        selected.classList.add('active');
+      }
     }
-  </script>
 
+    // Kur ngarkon faqen, shfaq seksionin 'kafe' si default
+    document.addEventListener('DOMContentLoaded', () => {
+      showSection('kafe');
+
+      // Gjenero QR code me URL-në aktuale
+      new QRCode(document.getElementById("qrcode"), {
+        text: window.location.href,
+        width: 200,
+        height: 200,
+      });
+    });
+  </script>
 </body>
 </html>
